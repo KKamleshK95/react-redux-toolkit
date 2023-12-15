@@ -1,12 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeTodo } from "../features/todo/todoSlice";
 
-export default function Todos (){
-    const Todos = useSelector(state => state)
+export default function Todos() {
+    const Todos = useSelector(state => state.todos)
+    const Dispatch = useDispatch()
     console.log(Todos)
-    return(
+    return (
         <div>
-dfasfasdf
+            {Todos && Todos.map((x) => (<div key={x.id}>{x.text} <button onClick={() =>Dispatch(removeTodo(x.id))}> del</button></div>))}
         </div>
     )
 }
